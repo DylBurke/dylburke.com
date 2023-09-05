@@ -1,8 +1,8 @@
-import Head from 'next/head'
 import * as React from 'react'
-import * as types from 'lib/types'
-import { PageHead } from './PageHead'
 
+import * as types from '@/lib/types'
+
+import { PageHead } from './PageHead'
 import styles from './styles.module.css'
 
 export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
@@ -10,25 +10,22 @@ export const Page404: React.FC<types.PageProps> = ({ site, pageId, error }) => {
 
   return (
     <>
-      <PageHead site={site} />
-
-      <Head>
-        <meta property='og:site_name' content={title} />
-        <meta property='og:title' content={title} />
-
-        <title>{title}</title>
-      </Head>
+      <PageHead site={site} title={title} />
 
       <div className={styles.container}>
         <main className={styles.main}>
-          <h1>Notion Page Not Found</h1>
+          <h1>Page Not Found</h1>
+
+          <div className={styles.link}><a href="https://us14.list-manage.com/contact-form?u=48ac2df5c8c9410ed02b4c867&form_id=b38cf72feb797a9ebd3b251645784085" target="_blank" rel="noreferrer">Let Leo know that something went wrong</a></div>
+          
 
           {error ? (
             <p>{error.message}</p>
           ) : (
             pageId && (
               <p>
-                Make sure that Notion page "{pageId}" is publicly accessible.
+                Make sure that Notion page &quot;{pageId}&quot; is publicly
+                accessible.
               </p>
             )
           )}
